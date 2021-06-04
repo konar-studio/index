@@ -19,8 +19,6 @@
     "vuepress-theme-default-rtl": "^1.0.1"
   },
   "dependencies": {
-    "@vssue/api-github-v4": "^1.4.7",
-    "@vssue/vuepress-plugin-vssue": "^1.4.8",
     "mermaid": "^8.10.1"
   }
 }
