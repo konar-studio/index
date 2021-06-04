@@ -1,0 +1,31 @@
+/**
+ * Custom Styles here.
+ *
+ * ref：https://v1.vuepress.vuejs.org/config/#index-styl
+ */
+
+.home .hero img
+  max-width 450px!important
+  max-height: 300px!important
+
+.home .hero .action-button
+  background-color: #39b4b4!important;
+a.sidebar-link.active ,.nav-links a:hover, .nav-links a.router-link-active
+  color: #39b4b4!important;
+  border-right-color: #39b4b4!important;
+  border-bottom-color: #39b4b4!important;
+a
+  color: #39b4b4
+.mermaid 
+  text-align: center;
+.mermaid .label 
+    font-size: 14px;
+    font-family: GanjNamehSans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif!important;
+    -webkit-font-smoothing: antialiased!important;
+    -moz-osx-font-smoothing: grayscale!important;
+
+// wide mobile
+@media (max-width: $MQMobile)
+  .sidebar
+    transform translateX(100%);
+ 
