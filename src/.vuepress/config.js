@@ -36,10 +36,10 @@ module.exports = {
    themeConfig: {
     persianDate: true, // used in last-update plugin
     lastUpdated: 'آخرین ویرایش',
-    repo: 'https://github.com/konar-studio',
+    repo: 'https://github.com/konar-studio/index',
     editLinks: true,
-    docsDir: '',
-    editLinkText: '',
+    docsDir: 'src',
+    editLinkText: 'ویرایش',
     nav: [
       {
         text: 'راه حل ها',
