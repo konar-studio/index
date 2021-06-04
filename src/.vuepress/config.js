@@ -70,12 +70,13 @@ module.exports = {
     },
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
-    '@vssue/vuepress-plugin-vssue', {
-      platform: 'github',
+    ['@vssue/vuepress-plugin-vssue', {
+      platform: 'github-v4',
       owner: 'konar-studio',
       repo: 'index',
       clientId: '8cab076d78be9cdc2b35',
       clientSecret: '047f1519e7a547e94c2df6160105aa43d21c20aa',
-    },
+      locale:'fa'
+    }]
   ]
 }
