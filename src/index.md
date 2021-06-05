@@ -1,8 +1,9 @@
 ---
 home: true
 heroImage: /tree.svg
-tagline: اولین کارخانه کاملا متن باز
-actionText: شروع کردن
+heroText: کارگاه نوآوری های روزمره
+tagline: 'استودیو کنار : اولین ‌کارخانه متن‌باز'
+actionText: ایده‌ها و نوآوری‌ها
 actionLink: /guide/
 features:
 - title: ایده ها
