@@ -42,14 +42,17 @@ module.exports = {
     editLinkText: 'ویرایش',
     nav: [
       {
-        text: 'راه حل ها',
+        text: 'ایده ها',
         link: '/guide/',
       },
       {
-        text: 'درباره ما',
+        text: 'کارخانه متن‌باز',
+        link: '/open-source-factory/'
+      },
+      {
+        text: 'درباره استودیو کنار',
         link: '/about/'
       },
-   
     ],
     sidebar: [
       '/guide/',

@@ -5,11 +5,11 @@ tagline: اولین کارخانه کاملا متن باز
 actionText: شروع کردن
 actionLink: /guide/
 features:
-- title: راح حل ها
-  details: راه حل های ارائه شده
+- title: ایده ها
+  details: ایده های جدید مطرح شده  
 - title: درباره اینجا
   details: اینجا کجاست ؟
 - title: اطلاعات تماس
   details: اطلاعات حقوقی و تماس
-footer: Made by Ali Zemani with ❤️
+footer:    همه چیز به طور شگفت انگیزی خوب باید باشد ، طراحی و توسعه توسط علی زِمانی ❤️
 ---
