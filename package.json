@@ -9,8 +9,8 @@
   },
   "repository": "https://github.com/konar-studio/index",
   "scripts": {
-    "dev": "vuepress dev src",
-    "build": "vuepress build src"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
   "license": "MIT",
   "devDependencies": {
@@ -19,6 +19,9 @@
     "vuepress-theme-default-rtl": "^1.0.1"
   },
   "dependencies": {
-    "mermaid": "^8.10.1"
+    "date-fns": "^2.22.1",
+    "konva": "^8.0.2",
+    "mermaid": "^8.10.2",
+    "vue-konva": "^2.1.3"
   }
 }
