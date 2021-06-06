@@ -3,8 +3,9 @@
 پاره ای توضیحات
 
 ## وب‌اپلیکیشن
-
-<wasmLoader   />
+<ClientOnly>
+ <wasmLoader/>
+</ClientOnly>
 
 
 ----
