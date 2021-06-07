@@ -1,6 +1,6 @@
 importScripts('wasm_exec.js');
 
-const wasm_url = "core.wasm";
+const WASM_URL = "wasm.wasm";
 const go = new Go();
 
 onmessage = async ({
@@ -11,17 +11,23 @@ onmessage = async ({
   if (messageType === "load") {
     postMessage('Worker loading');
     // server = await wsConnect();
+    var wasm;
 
-    if (!WebAssembly.instantiateStreaming) { // polyfill
-      WebAssembly.instantiateStreaming = async (resp, importObject) => {
-        const source = await (await resp).arrayBuffer();
-        return await WebAssembly.instantiate(source, importObject);
-      };
+    if ('instantiateStreaming' in WebAssembly) {
+      WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(function (obj) {
+        wasm = obj.instance;
+        go.run(wasm);
+      })
+    } else {
+      fetch(WASM_URL).then(resp =>
+        resp.arrayBuffer()
+      ).then(bytes =>
+        WebAssembly.instantiate(bytes, go.importObject).then(function (obj) {
+          wasm = obj.instance;
+          go.run(wasm);
+        })
+      )
     }
-
-    WebAssembly.instantiateStreaming(fetch(wasm_url), go.importObject).then((result) => {
-      go.run(result.instance);
-    });
 
     postMessage('Wasm loading');
   }

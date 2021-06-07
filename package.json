@@ -10,7 +10,8 @@
   "repository": "https://github.com/konar-studio/index",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "build:wasm": "GOROOT=/usr/lib/go tinygo build -o docs/.vuepress/public/build/wasm.wasm -target wasm ./wApps/surface-scanner/wasm.go"
   },
   "license": "MIT",
   "devDependencies": {

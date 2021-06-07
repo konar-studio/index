@@ -36,8 +36,8 @@
         <li v-for="log in logs" v-bind:key="log">{{ log.text }}</li>
       </ol>
     </aside>
-    <main ref="canvas_aria">
-
+    <main   >
+      <canvas ref="canvas_aria" id="mycanvas">Your browser doesn't appear to support the canvas tag.</canvas>
     </main>
   </div>
 </template>
