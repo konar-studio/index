@@ -37,29 +37,13 @@
       </ol>
     </aside>
     <main ref="canvas_aria">
-      <v-stage ref="stage" :config="configKonva">
-        <v-layer ref="layer">
-          <v-shape :config="configWorldLines" />
-          <v-circle
-            ref="particles"
-            v-for="item in list"
-            :key="item.id"
-            :config="{
-              x: item.x,
-              y: item.y,
-              radius: item.r,
-              fill: item.f,
-              opacity: 0.1,
-            }"
-          ></v-circle>
-        </v-layer>
-      </v-stage>
+
     </main>
   </div>
 </template>
 
 <script>
-const WORKER_URL = "./build/worker.js";
+const WORKER_URL = "/build/worker.js";
 export default {
   data: function () {
     return {
@@ -73,8 +57,6 @@ export default {
       y_input: 5,
       final_value: 0,
       logs: [],
-      configKonva: {},
-      configWorldLines: {},
       list: [],
       is_full_screen: false,
     };
@@ -153,50 +135,7 @@ export default {
         }, delayInms);
       });
     },
-
-    loadCanvasWindows: function (app_windows) {
-      const height = app_windows.offsetHeight;
-      const width = app_windows.offsetWidth;
-
-      this.configKonva.width = width;
-      this.configKonva.height = height;
-      let out = {
-        height: height,
-        width: width,
-      };
-      return out;
-    },
-    drawWorldLines: function (windows) {
-      return {
-        sceneFunc: function (context, shape) {
-          // X axis
-          context.beginPath();
-          context.moveTo(0, windows.height / 2);
-          context.lineTo(windows.width, windows.height / 2);
-          context.closePath();
-          context.fillStrokeShape(shape);
-
-          // Y axis
-          context.beginPath();
-          context.moveTo(windows.width / 2, 0);
-          context.lineTo(windows.width / 2, windows.height);
-          context.closePath();
-          context.fillStrokeShape(shape);
-        },
-        fill: "white",
-        stroke: "#ddd",
-        strokeWidth: 1,
-      };
-    },
-    loadCenterPoint: function (windows) {
-      let pos = {
-        x: windows.width / 2,
-        y: windows.height / 2,
-        r: 2,
-        f: "#01b4b4",
-      };
-      this.list.push(pos);
-    },
+ 
 
     drawSpaceTime: async function () {
       // check for full screen !
@@ -211,13 +150,7 @@ export default {
         return;
       }
 
-      let windows = await this.loadCanvasWindows(app_windows);
-
-      //Draw world line
-      this.configWorldLines = await this.drawWorldLines(windows);
-
-      // Draw +
-      await this.loadCenterPoint(windows);
+  
       this.sendWindowsWorker();
     },
     fullScreen: function () {
@@ -255,20 +188,7 @@ export default {
         console.log(event.data);
       };
     },
-    animatePoints: function () {
-      const period = 5000;
-      // in ms
-      const particles = this.$refs.layer
-        .getStage()
-        .getChildren(function (node) {
-          return node.getClassName() === "Circle";
-        });
-      const anim = new Konva.Animation(function (frame) {
-        var scale = Math.sin((frame.time * 2 * Math.PI) / period) + 0.01;
-        particles[particles.length - 1].scale({ x: scale, y: scale });
-      }, this.$refs.layer.getStage());
-      anim.start();
-    },
+
   },
 };
 </script>
