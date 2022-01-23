@@ -46,8 +46,12 @@ onmessage = async ({ data }) => {
     setWindowsSize(windows);
   }
   if (messageType === "close") {
-    server.close();
-    postMessage("Closing");
+    try {
+      server.close();
+      postMessage("Closing");
+    } catch (e) {
+      console.log(e);
+    }
   }
 };
 

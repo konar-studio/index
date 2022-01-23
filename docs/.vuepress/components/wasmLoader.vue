@@ -2,7 +2,7 @@
   <div :class="is_full_screen ? 'full-screen app-windows' : 'app-windows'">
     <aside class="tools">
       <div class="button-input">
-        <button v-on:click="Installition" :disabled="installDisabled">
+        <button v-on:click="Installation" :disabled="installDisabled">
           نصب نرم‌افزار
         </button>
         <span>{{ install_status }}</span>
@@ -21,14 +21,15 @@
       <div class="button-input">
         <button v-on:click="tlsConnection">حالت TLS</button>
       </div>
-      <div class="button-input">
-        <button v-on:click="tlsConnectionAPI">حالت TLS API</button>
-      </div>
+
       <div class="button-input">
         <button v-on:click="fullScreen" v-if="is_full_screen">
           خروج از تمام‌صفحه
         </button>
         <button v-on:click="fullScreen" v-else>تمام‌صفحه</button>
+        <div class="button-input">
+          <button v-on:click="reloading">Reload</button>
+        </div>
       </div>
     </aside>
     <aside class="logger">
@@ -61,7 +62,7 @@ export default {
       final_value: 0,
       logs: [],
       list: [],
-      is_full_screen: false,
+      is_full_screen: true,
     };
   },
   created() {
@@ -76,15 +77,15 @@ export default {
     // this.drawSpaceTime();
   },
   methods: {
-    Installition: async function() {
+    Installation: async function() {
       try {
         this.worker = await this.WorkerLoad();
-        this.install_status = "Installition Complete !";
+        this.install_status = "Installation Complete !";
         this.installDisabled = true;
       } catch (e) {
         console.log(e);
-        this.install_status = "Installition Error";
-        this.logs.push({ text: "Installition Error" });
+        this.install_status = "Installation Error";
+        this.logs.push({ text: "Installation Error" });
       }
     },
 
@@ -191,6 +192,12 @@ export default {
         console.log(event);
         console.log(event.data);
       };
+    },
+    reloading: async function() {
+      await this.TurnOff()
+      await this.Installation()
+      // await this.Running()
+      console.log("ding");
     },
   },
 };
