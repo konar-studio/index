@@ -36,16 +36,19 @@
         <li v-for="log in logs" v-bind:key="log">{{ log.text }}</li>
       </ol>
     </aside>
-    <main   >
-      <canvas ref="canvas_aria" id="mycanvas">Your browser doesn't appear to support the canvas tag.</canvas>
+    <main>
+      <canvas ref="canvas_aria" id="mycanvas"
+        >Your browser doesn't appear to support the canvas tag.</canvas
+      >
     </main>
   </div>
 </template>
 
 <script>
-const WORKER_URL = "/build/worker.js";
+const WORKER_URL = "/wasm/loader/worker.js";
 export default {
-  data: function () {
+  props: ["wApp_name"],
+  data: function() {
     return {
       installDisabled: false,
       runDisabled: false,
@@ -68,10 +71,12 @@ export default {
     window.removeEventListener("resize", this.drawSpaceTime);
   },
   mounted() {
+    // console.log(this.wApp_name);
+    // console.log(this.worker_file);
     // this.drawSpaceTime();
   },
   methods: {
-    Installition: async function () {
+    Installition: async function() {
       try {
         this.worker = await this.WorkerLoad();
         this.install_status = "Installition Complete !";
@@ -83,7 +88,7 @@ export default {
       }
     },
 
-    Running: function () {
+    Running: function() {
       try {
         this.worker.postMessage({ status: "run" });
         this.run_status = "App is Running";
@@ -100,12 +105,12 @@ export default {
           }
         };
       } catch (e) {
-        this.run_status = "runing error";
+        this.run_status = "running error";
         console.log(e);
       }
     },
 
-    TurnOff: async function () {
+    TurnOff: async function() {
       this.worker.postMessage({ status: "close" });
       this.installDisabled = false;
       this.runDisabled = false;
@@ -113,31 +118,31 @@ export default {
       this.run_status = "Not Running";
     },
 
-    WorkerLoad: async function () {
+    WorkerLoad: async function() {
       this.install_status = "Step 2: Loading Worker";
-      return new Promise(function (resolve, reject) {
+      const wApp_name = this.wApp_name;
+      return new Promise(function(resolve, reject) {
         let worker = new Worker(WORKER_URL);
-        worker.postMessage({ status: "load" });
+        worker.postMessage({ status: "load", wApp_name: wApp_name });
         worker.onmessage = (e) => {
           console.log(e.data);
           resolve(worker);
         };
-        worker.onerror = function (err) {
+        worker.onerror = function(err) {
           reject(err);
         };
       });
     },
 
-    delay: async function (delayInms) {
+    delay: async function(delayInms) {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(2);
         }, delayInms);
       });
     },
- 
 
-    drawSpaceTime: async function () {
+    drawSpaceTime: async function() {
       // check for full screen !
       try {
         this.is_full_screen = await JSON.parse(localStorage.wasm_full_screen);
@@ -150,10 +155,9 @@ export default {
         return;
       }
 
-  
       this.sendWindowsWorker();
     },
-    fullScreen: function () {
+    fullScreen: function() {
       if (this.is_full_screen) {
         this.is_full_screen = false;
         localStorage.wasm_full_screen = false;
@@ -165,30 +169,29 @@ export default {
       }
       this.drawSpaceTime();
     },
-    sendWindowsWorker: function () {
+    sendWindowsWorker: function() {
       if (this.runDisabled) {
         let app_windows = this.$refs.canvas_aria;
         let windows = this.loadCanvasWindows(app_windows);
         this.worker.postMessage({ status: "windows-size", windows: windows });
       }
     },
-    tlsConnection: function () {
+    tlsConnection: function() {
       console.log("Start EventSource");
       var source = new EventSource("https://signaling.local/hello");
-      source.onmessage = function (event) {
+      source.onmessage = function(event) {
         console.log(event);
         console.log(event.data);
       };
     },
-    tlsConnectionAPI: function () {
+    tlsConnectionAPI: function() {
       console.log("Start EventSource");
       var source = new EventSource("https://signaling.local/api/hello");
-      source.onmessage = function (event) {
+      source.onmessage = function(event) {
         console.log(event);
         console.log(event.data);
       };
     },
-
   },
 };
 </script>
