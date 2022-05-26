@@ -38,7 +38,7 @@
       </ol>
     </aside>
     <main>
-      <canvas ref="canvas_aria" id="mycanvas"
+      <canvas ref="canvas_aria" id="canvas"
         >Your browser doesn't appear to support the canvas tag.</canvas
       >
     </main>
