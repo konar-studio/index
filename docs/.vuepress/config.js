@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "استودیو کُنار، کارگاه نوآوری های روزمره",
+  title: "استودیو کُنار",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
