@@ -1,16 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
-	"syscall/js"
 	"time"
 )
 
 var (
-	width   float64
-	height  float64
-	context js.Value
+	width  float64
+	height float64
+	// context js.Value
 )
 
 func getRandomNum() float64 {
@@ -21,7 +19,7 @@ func getRandomNum() float64 {
 
 func render() {
 
-	doc := js.Global().Get("body")
+	// doc := js.Global().Get("body")
 	// canvasEl := doc.Call("getElementById", "canvas")
 
 	// width = doc.Get("body").Get("clientWidth").Float()
@@ -31,7 +29,7 @@ func render() {
 	// canvasEl.Call("setAttribute", "height", height)
 	// context = canvasEl.Call("getContext", "2d")
 
-	fmt.Println(doc)
+	// fmt.Println(doc)
 	// fmt.Println(height)
 
 	// for i := 0; i < 50; i++ {

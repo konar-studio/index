@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "date-fns": "^2.28.0",
-    "konva": "^8.3.2",
-    "mermaid": "^8.13.10",
-    "vue-konva": "^2.1.7"
+    "konva": "^8.3.8",
+    "mermaid": "^9.1.1",
+    "vue-konva": "^3.0.0"
   }
 }

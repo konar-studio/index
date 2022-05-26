@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "استودیو کنار",
+  title: "استودیو کُنار، کارگاه نوآوری های روزمره",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -61,15 +61,11 @@ module.exports = {
     editLinkText: "ویرایش",
     nav: [
       {
-        text: "ایده ها",
-        link: "/ideas/",
-      },
-      {
         text: "درباره",
         link: "/about/",
       },
     ],
-    sidebar: ["/ideas/", "/ideas/johari-behavers/", "/ideas/surface-scanner/"],
+    // sidebar: ["/ideas/", "/ideas/johari-behavers/", "/ideas/surface-scanner/"],
   },
 
   /**
