@@ -64,6 +64,10 @@ module.exports = {
         text: "درباره",
         link: "/about/",
       },
+      {
+        text: "تماس",
+        link: "/contact/",
+      },
     ],
     // sidebar: ["/ideas/", "/ideas/johari-behavers/", "/ideas/surface-scanner/"],
   },
